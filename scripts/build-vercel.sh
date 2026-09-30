@@ -7,7 +7,12 @@ SUBMISSION_DIR="/tmp/ember-isle-submission"
 OUT_DIR="$ROOT/.vercel-output"
 
 rm -rf "$SDK_DIR" "$SUBMISSION_DIR" "$OUT_DIR"
-git clone --depth 1 https://github.com/dejagold123/friendsdk.git "$SDK_DIR"
+# Official FriendSDK, pinned to v0.1.4 (the version Ember Isle is built and tested against)
+SDK_REF="ca3bf183b809ecf22d87c63d88ce03969a3f8da2"
+git init -q "$SDK_DIR"
+git -C "$SDK_DIR" remote add origin https://github.com/spokesz/friendsdk.git
+git -C "$SDK_DIR" fetch -q --depth 1 origin "$SDK_REF"
+git -C "$SDK_DIR" checkout -q FETCH_HEAD
 git clone --depth 1 https://github.com/dejagold123/rarefriends-vibeathon.git "$SUBMISSION_DIR"
 
 mkdir -p "$SDK_DIR/games/ember-isle"
