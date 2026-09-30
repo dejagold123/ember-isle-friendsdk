@@ -1,0 +1,8 @@
+{
+  "name": "ember-isle-friendsdk-deployment",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "bash scripts/build-vercel.sh"
+  }
+}

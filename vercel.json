@@ -1,0 +1,5 @@
+{
+  "buildCommand": "bash scripts/build-vercel.sh",
+  "outputDirectory": ".vercel-output",
+  "installCommand": "echo 'FriendSDK is installed by the build script'"
+}
