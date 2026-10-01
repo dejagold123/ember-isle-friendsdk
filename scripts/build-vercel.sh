@@ -27,4 +27,11 @@ npm ci
 npm run build
 node scripts/dev-game.mjs build games/ember-isle --outdir "$OUT_DIR"
 
+# Phone layout (fullscreen + auto-landscape) and a visible build stamp, appended to the host page's layout.css
+cat "$ROOT/scripts/phone-layout.css" >> "$OUT_DIR/layout.css"
+GAME_SHA="$(git -C "$SUBMISSION_DIR" rev-parse --short HEAD)"
+HOST_SHA="${VERCEL_GIT_COMMIT_SHA:-local}"; HOST_SHA="${HOST_SHA:0:7}"
+printf '.rf-frame-toolbar::after{content:"build %s / %s";margin-left:auto;font:9px ui-monospace,monospace;color:#666;white-space:nowrap;pointer-events:none}\n' "$GAME_SHA" "$HOST_SHA" >> "$OUT_DIR/layout.css"
+echo "Phone layout + build stamp (game $GAME_SHA, host $HOST_SHA) added"
+
 echo "Built Ember Isle into $OUT_DIR"

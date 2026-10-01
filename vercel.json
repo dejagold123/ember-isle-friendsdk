@@ -1,5 +1,8 @@
 {
   "buildCommand": "bash scripts/build-vercel.sh",
   "outputDirectory": ".vercel-output",
-  "installCommand": "echo 'FriendSDK is installed by the build script'"
+  "installCommand": "echo 'FriendSDK is installed by the build script'",
+  "headers": [
+    { "source": "/(.*)", "headers": [{ "key": "Cache-Control", "value": "no-cache, must-revalidate" }] }
+  ]
 }

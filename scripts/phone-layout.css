@@ -1,0 +1,29 @@
+/*
+ * Phone layout for the Ember Isle host page (appended to layout.css at build time).
+ * The SDK frame is a fixed 3:2 box, which is a small letterbox on a phone. On phones this makes the frame
+ * fill the screen, and when the phone is held upright it rotates the frame 90deg so the game plays in
+ * landscape. Browsers map touches through the rotation, so the game itself needs no changes.
+ * The SDK toolbar (mode / Friend / wallet) stays visible, but as its own strip instead of floating over the joystick.
+ */
+@media (pointer: coarse) and (orientation: portrait) and (max-width: 600px),
+       (pointer: coarse) and (orientation: landscape) and (max-height: 600px) {
+  html, body { height: 100%; overflow: hidden; overscroll-behavior: none; background: #07080c; }
+  #root { max-width: none; margin: 0; }
+  .rf-game-frame {
+    position: fixed; top: 0; left: 0; z-index: 1;
+    width: 100vw; height: 100vh; width: 100dvw; height: 100dvh;
+    max-width: none; aspect-ratio: auto; border: 0;
+  }
+  .rf-frame-toolbar {
+    position: static; order: 2; flex: none; left: auto; right: auto; bottom: auto;
+    padding: 3px 6px; background: #eee; border-top: 1px solid #111; pointer-events: auto;
+  }
+  .rf-frame-toolbar > * { padding: 3px 6px; }
+}
+@media (pointer: coarse) and (orientation: portrait) and (max-width: 600px) {
+  .rf-game-frame {
+    width: 100vh; height: 100vw; width: 100dvh; height: 100dvw;
+    transform-origin: top left;
+    transform: translateX(100vw) rotate(90deg); transform: translateX(100dvw) rotate(90deg);
+  }
+}
